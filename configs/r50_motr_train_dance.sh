@@ -8,9 +8,9 @@
 
 # for MOT17
 
-PRETRAIN=r50_deformable_detr_plus_iterative_bbox_refinement-checkpoint.pth
-EXP_DIR=exps/e2e_motr_r50_dance
-python3 -m torch.distributed.launch --nproc_per_node=8 \
+PRETRAIN=/remote-home/mqhuang/zir/MOTRv2/r50_deformable_detr_plus_iterative_bbox_refinement-checkpoint.pth
+EXP_DIR=./exps/e2e_motr_r50_dance
+python3 -m torch.distributed.launch --nproc_per_node=3 \
     --use_env main.py \
     --meta_arch motr \
     --use_checkpoint \
@@ -36,4 +36,4 @@ python3 -m torch.distributed.launch --nproc_per_node=8 \
     --extra_track_attn \
     --data_txt_path_train ./datasets/data_path/joint.train \
     --data_txt_path_val ./datasets/data_path/mot17.train \
-    |& tee ${EXP_DIR}/output.log
+    | tee ${EXP_DIR}/output.log

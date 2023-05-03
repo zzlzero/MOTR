@@ -378,8 +378,8 @@ class Detector(object):
         self.detr = model
 
         self.seq_num = seq_num
-        img_list = os.listdir(os.path.join(self.args.mot_path, 'DanceTrack/test', self.seq_num, 'img1'))
-        img_list = [os.path.join(self.args.mot_path, 'DanceTrack/test', self.seq_num, 'img1', _) for _ in img_list if
+        img_list = os.listdir(os.path.join(self.args.mot_path, 'VisDrone2019/test', self.seq_num, 'img1'))
+        img_list = [os.path.join(self.args.mot_path, 'VisDrone2019/test', self.seq_num, 'img1', _) for _ in img_list if
                     ('jpg' in _) or ('png' in _)]
 
         self.img_list = sorted(img_list)
@@ -427,6 +427,7 @@ class Detector(object):
 
     @staticmethod
     def visualize_img_with_bbox(img_path, img, dt_instances: Instances, ref_pts=None, gt_boxes=None):
+        img = img.numpy()
         if dt_instances.has('scores'):
             img_show = draw_bboxes(img, np.concatenate([dt_instances.boxes, dt_instances.scores.reshape(-1, 1)], axis=-1), dt_instances.obj_idxes)
         else:
@@ -496,9 +497,9 @@ if __name__ == '__main__':
     detr = detr.cuda()
 
     # '''for MOT17 submit''' 
-    sub_dir = 'DanceTrack/test'
+    sub_dir = 'VisDrone2019/test'
     seq_nums = os.listdir(os.path.join(args.mot_path, sub_dir))
 
     for seq_num in seq_nums:
         det = Detector(args, model=detr, seq_num=seq_num)
-        det.detect()
+        det.detect(vis=True)

@@ -36,7 +36,7 @@ class DetMOTDetection:
         self.sample_mode = args.sample_mode
         self.sample_interval = args.sample_interval
         self.video_dict = {}
-        self.split_dir = os.path.join(args.mot_path, "DanceTrack", "train")
+        self.split_dir = os.path.join(args.mot_path, "VisDrone2019", "train")
 
         self.labels_full = defaultdict(lambda : defaultdict(list))
         for vid in os.listdir(self.split_dir):
@@ -120,7 +120,7 @@ class DetMOTDetection:
         return [img], [target]
 
     def _pre_single_frame(self, vid, idx: int):
-        img_path = os.path.join(self.split_dir, vid, 'img1', f'{idx:08d}.jpg')
+        img_path = os.path.join(self.split_dir, vid, 'img1', f'{idx:07d}.jpg')
         img = Image.open(img_path)
         targets = {}
         w, h = img._size

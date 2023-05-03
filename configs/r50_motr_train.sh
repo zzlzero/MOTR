@@ -8,13 +8,14 @@
 
 # for MOT17
 
-# PRETRAIN=coco_model_final.pth
-# EXP_DIR=exps/e2e_motr_r50_joint
-# python3 -m torch.distributed.launch --nproc_per_node=8 \
-#     --use_env main.py \
-#     --meta_arch motr \
-#     --use_checkpoint \
-#     --dataset_file e2e_joint \
+ PRETRAIN=coco_model_final.pth
+ EXP_DIR=exps/e2e_motr_r50_joint
+ python3 -m torch.distributed.launch --nproc_per_node=1 \
+     --use_env main.py \
+     --meta_arch motr \
+     --use_checkpoint \
+     --dataset_file e2e_joint \
+     --sampler_lengths 2 3 4 5 \
 #     --epoch 200 \
 #     --with_box_refine \
 #     --lr_drop 100 \
@@ -26,7 +27,7 @@
 #     --sample_mode 'random_interval' \
 #     --sample_interval 10 \
 #     --sampler_steps 50 90 150 \
-#     --sampler_lengths 2 3 4 5 \
+     
 #     --update_query_pos \
 #     --merger_dropout 0 \
 #     --dropout 0 \

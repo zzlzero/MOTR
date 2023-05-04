@@ -8,9 +8,9 @@
 EXP_DIR=exps/e2e_motr_r50_dance
 python3 submit_dance.py \
     --meta_arch motr \
-    --dataset_file e2e_joint \
-    --mot_path /data/datasets \
-    --epoch 200 \
+    --dataset_file e2e_dance \
+    --mot_path /disk1/zzl/data/Dataset \
+    --epoch 10 \
     --with_box_refine \
     --lr_drop 100 \
     --lr 2e-4 \
@@ -30,5 +30,5 @@ python3 submit_dance.py \
     --extra_track_attn \
     --data_txt_path_train ./datasets/data_path/joint.train \
     --data_txt_path_val ./datasets/data_path/mot17.train \
-    --resume ${EXP_DIR}/checkpoint.pth \
+    --resume ${EXP_DIR}/checkpoint0014.pth \
     --exp_name tracker

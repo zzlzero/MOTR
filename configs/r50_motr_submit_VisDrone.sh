@@ -6,11 +6,11 @@
 # ------------------------------------------------------------------------
 
 EXP_DIR=./exps/e2e_motr_r50_dance
-python3 submit_dance.py \
+python3 submit_VisDrone.py \
     --meta_arch motr \
     --dataset_file e2e_dance \
     --mot_path /remote-home/mqhuang/zir/data/MOT \
-    --epoch 10 \
+    --epoch 20 \
     --with_box_refine \
     --lr_drop 100 \
     --lr 2e-4 \
@@ -30,5 +30,5 @@ python3 submit_dance.py \
     --extra_track_attn \
     --data_txt_path_train ./datasets/data_path/joint.train \
     --data_txt_path_val ./datasets/data_path/mot17.train \
-    --resume ${EXP_DIR}/checkpoint0009.pth \
+    --resume ${EXP_DIR}/checkpoint0019.pth \
     --exp_name tracker
